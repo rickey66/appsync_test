@@ -18,14 +18,8 @@ export const listTodos = /* GraphQL */ `
     $filter: TableTodoFilterInput
     $limit: Int
     $nextToken: String
-    $authUser: String
   ) {
-    listTodos(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      authUser: $authUser
-    ) {
+    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         description
         id

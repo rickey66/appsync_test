@@ -12,7 +12,7 @@ type Mutation {
 
 type Query {
     getTodo(id: ID!): Todo
-    listTodos(filter: TableTodoFilterInput, limit: Int, nextToken: String, authUser: String): TodoConnection
+    listTodos(filter: TableTodoFilterInput, limit: Int, nextToken: String): TodoConnection
 }
 
 type Subscription {

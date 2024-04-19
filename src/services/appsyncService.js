@@ -12,7 +12,6 @@ export default {
             query: listTodos,
             variables: {
                 //filter: filter,
-                authUser: "ryuichi_nk"
             }
         });
         return result.data.listTodos.items
