@@ -1,4 +1,4 @@
-# appsync_integration
+# appsync_test
 
 ## Project setup
 ```
@@ -22,4 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-# appsync_test
+

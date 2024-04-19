@@ -1,0 +1,130 @@
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Mutation {
+    createTodo(input: CreateTodoInput!): Todo
+    deleteTodo(input: DeleteTodoInput!): Todo
+    updateTodo(input: UpdateTodoInput!): Todo
+}
+
+type Query {
+    getTodo(id: ID!): Todo
+    listTodos(filter: TableTodoFilterInput, limit: Int, nextToken: String, authUser: String): TodoConnection
+}
+
+type Subscription {
+    onCreateTodo(description: String, id: ID, name: String, when: String, where: String): Todo @aws_subscribe(mutations : ["createTodo"])
+    onDeleteTodo(description: String, id: ID, name: String, when: String, where: String): Todo @aws_subscribe(mutations : ["deleteTodo"])
+    onUpdateTodo(description: String, id: ID, name: String, when: String, where: String): Todo @aws_subscribe(mutations : ["updateTodo"])
+}
+
+type Todo {
+    description: String
+    id: ID!
+    name: String
+    when: String
+    where: String
+}
+
+type TodoConnection {
+    items: [Todo]
+    nextToken: String
+}
+
+input CreateTodoInput {
+    description: String
+    name: String
+    when: String
+    where: String
+}
+
+input DeleteTodoInput {
+    id: ID!
+}
+
+input ModelSizeInput {
+    between: [Int]
+    eq: Int
+    ge: Int
+    gt: Int
+    le: Int
+    lt: Int
+    ne: Int
+}
+
+input TableBooleanFilterInput {
+    attributeExists: Boolean
+    eq: Boolean
+    ne: Boolean
+}
+
+input TableFloatFilterInput {
+    attributeExists: Boolean
+    between: [Float]
+    eq: Float
+    ge: Float
+    gt: Float
+    le: Float
+    lt: Float
+    ne: Float
+}
+
+input TableIDFilterInput {
+    attributeExists: Boolean
+    beginsWith: ID
+    between: [ID]
+    contains: ID
+    eq: ID
+    ge: ID
+    gt: ID
+    le: ID
+    lt: ID
+    ne: ID
+    notContains: ID
+    size: ModelSizeInput
+}
+
+input TableIntFilterInput {
+    attributeExists: Boolean
+    between: [Int]
+    eq: Int
+    ge: Int
+    gt: Int
+    le: Int
+    lt: Int
+    ne: Int
+}
+
+input TableStringFilterInput {
+    attributeExists: Boolean
+    beginsWith: String
+    between: [String]
+    contains: String
+    eq: String
+    ge: String
+    gt: String
+    le: String
+    lt: String
+    ne: String
+    notContains: String
+    size: ModelSizeInput
+}
+
+input TableTodoFilterInput {
+    description: TableStringFilterInput
+    id: TableIDFilterInput
+    name: TableStringFilterInput
+    when: TableStringFilterInput
+    where: TableStringFilterInput
+}
+
+input UpdateTodoInput {
+    description: String
+    id: ID!
+    name: String
+    when: String
+    where: String
+}
